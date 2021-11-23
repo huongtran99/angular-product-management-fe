@@ -1,0 +1,31 @@
+<h1>Danh sách sản phẩm</h1>
+<a routerLink="/product/create">Tạo mới danh mục</a>
+<form [formGroup]="productFormSearch" (ngSubmit)="getAll(page)">
+  <input type="text" formControlName="q">
+  <button>Search</button>
+</form>
+<table>
+  <tr>
+    <td>STT</td>
+    <td>Tên</td>
+    <td>Giá</td>
+    <td>Mô tả</td>
+    <td>Danh Mục</td>
+    <td>Sửa</td>
+    <td>Xóa</td>
+  </tr>
+  <tr *ngFor="let product of products; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+    <td>{{product.category.name}}</td>
+    <td><a routerLink="/product/edit/{{product.id}}">Edit</a></td>
+    <td><a [routerLink]="['/product/delete', product.id]">Delete</a></td>
+  </tr>
+</table>
+<button (click)="getAll(page - 1)">Back</button>
+<label *ngFor="let pageNumber of pagesTotal">
+  <button (click)="chosePage(pageNumber)">{{pageNumber + 1}}</button>
+</label>
+<button (click)="getAll(page + 1)">Next</button>
