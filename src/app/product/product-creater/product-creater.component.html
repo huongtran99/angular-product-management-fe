@@ -17,8 +17,15 @@
       <td>Danh Mục</td>
       <td>
         <select formControlName="category">
+          <option value=null disabled>Select</option>
           <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
         </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Upload File</td>
+      <td>
+          <input type="file" name="fileName" (change)="fileProgress($event)" multiple>
       </td>
     </tr>
     <tr>

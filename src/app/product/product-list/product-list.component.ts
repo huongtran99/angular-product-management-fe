@@ -48,27 +48,8 @@ export class ProductListComponent implements OnInit {
   chosePage(pageNumber) {
     this.productService.getAll(pageNumber).subscribe((products: any) => {
       this.products = products.content;
+      this.page = products.number;
     });
   }
-
-/*  pageControl(pageNumber) {
-    if (this.productFormSearch.value.q != null && this.productFormSearch.value.q != '') {
-      if (pageNumber > this.totalPage || this.totalPage === undefined) {
-        return;
-      }
-      this.productService.getProductByName(this.productFormSearch.value.q, pageNumber).subscribe((products: any) => {
-        this.products = products.content;
-        this.totalPage = products.totalPages;
-      });
-    } else {
-      if (pageNumber > this.totalPage) {
-        return;
-      }
-      this.productService.getAll(pageNumber).subscribe((products: any) => {
-        this.products = products.content;
-        this.totalPage = products.totalPages;
-      });
-    }
-  }*/
 
 }
